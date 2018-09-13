@@ -47,7 +47,8 @@
         android:background="@drawable/round"
         android:text="IPA"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnI"/>
 
     <Button
         android:layout_width="250dp"
@@ -57,6 +58,7 @@
         android:background="@drawable/round"
         android:text="B. INDONESIA"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnB"/>
 
 </LinearLayout>

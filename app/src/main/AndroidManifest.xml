@@ -26,7 +26,9 @@
             android:name=".SplashActivity"
             android:label="@string/title_activity_splash"
             android:theme="@style/AppTheme" />
-        <activity android:name=".SoaalActivity"></activity>
+        <activity android:name=".SoaalActivity" />
+        <activity android:name=".SkorActivity" />
+        <activity android:name=".SkorrActivity"></activity>
     </application>
 
 </manifest>

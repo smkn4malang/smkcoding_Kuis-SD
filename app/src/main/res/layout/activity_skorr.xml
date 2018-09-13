@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SkorrActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#f6e9ac">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hasil Nilai"
+        android:id="@+id/hasil"
+        android:textSize="25sp"
+        android:layout_marginRight="10dp"
+        android:textColor="#02d0ce"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="90sp"
+        android:id="@+id/nilai"
+        android:layout_marginRight="10dp"
+        android:textColor="#f66938"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Remidi"
+        android:id="@+id/btnr"
+        android:onClick="next"
+        android:background="@drawable/round"
+        android:textSize="30sp"/>
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Lanjut"
+        android:id="@+id/btnlan"
+        android:background="@drawable/round"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"/>
+
+</LinearLayout>

@@ -10,6 +10,8 @@ import android.widget.Button;
 public class SubjectActivity extends AppCompatActivity {
 
     private Button btnM;
+    private Button btnI;
+    private Button btnB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +19,26 @@ public class SubjectActivity extends AppCompatActivity {
         setContentView(R.layout.activity_subject);
 
         btnM = (Button)findViewById(R.id.btnM);
+        btnI = (Button)findViewById(R.id.btnI);
+        btnB = (Button)findViewById(R.id.btnB);
 
         btnM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SubjectActivity.this, VideoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SubjectActivity.this, VideoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SubjectActivity.this, VideoActivity.class);

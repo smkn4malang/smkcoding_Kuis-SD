@@ -48,7 +48,8 @@
         android:background="@drawable/round"
         android:text="Kelas 2"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnk2"/>
 
     <Button
         android:layout_width="250dp"
@@ -58,7 +59,8 @@
         android:background="@drawable/round"
         android:text="Kelas 3"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnk3"/>
 
     <Button
         android:layout_width="250dp"
@@ -68,7 +70,8 @@
         android:background="@drawable/round"
         android:text="Kelas 4"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnk4"/>
 
     <Button
         android:layout_width="250dp"
@@ -78,7 +81,8 @@
         android:background="@drawable/round"
         android:text="Kelas 5"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnk5"/>
 
     <Button
         android:layout_width="250dp"
@@ -88,7 +92,8 @@
         android:background="@drawable/round"
         android:text="Kelas 6"
         android:textColor="#000"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:id="@+id/btnk6"/>
 
 
 </LinearLayout>
