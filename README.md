@@ -1,5 +1,20 @@
 # KUIS SD
 
+Sementara
+
+![Logo](screenshots/home.png)
+
+![Logo](screenshots/nama.png)
+
+![Logo](screenshots/mapel.png)
+
+![Logo](screenshots/video.png)
+
+![Logo](screenshots/kelas.png)
+
+![Logo](screenshots/soal.png)
+
+
 Thanks to :
 
 - Allah SWT
