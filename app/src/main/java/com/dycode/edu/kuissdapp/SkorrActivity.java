@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class SkorrActivity extends AppCompatActivity {
 
-    Button btnlan;
+   /* Button btnlan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +36,5 @@ public class SkorrActivity extends AppCompatActivity {
         finish();
         Intent i = new Intent(getApplicationContext(),SoaalActivity.class);
         startActivity(i);
-    }
+    }*/
 }

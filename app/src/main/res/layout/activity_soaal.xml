@@ -9,20 +9,44 @@
     android:background="#f6e9ac">
 
     <TextView
+        android:id="@+id/score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Soal: 1/x"
-        android:id="@+id/text_no"
-        android:textSize="30sp"
-        android:padding="20dp"
-        android:textColor="#02d0ce"/>
+        android:text="Score:0"
+        android:textSize="20sp"
+        android:textColor="#fa5c5c"
+        android:padding="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Soal: 1/x"
+            android:id="@+id/text_no"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#02d0ce"/>
+
+        <TextView
+            android:id="@+id/waktu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:30"
+            android:textSize="30sp"
+            android:layout_marginLeft="180dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#fcba06"/>
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz\nzzzzzzzzzzzzzzzzzzzzzzzzz"
         android:id="@+id/text_soal"
-        android:layout_marginTop="20dp"
         android:padding="20dp"
         android:textSize="26sp"
         android:textColor="#f66938"/>
@@ -31,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/radiog"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:padding="20dp">
 
         <RadioButton
@@ -74,7 +98,6 @@
         android:id="@+id/btn_lnjt"
         android:background="@drawable/round"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:onClick="next"/>
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

@@ -1,6 +1,9 @@
 package com.dycode.edu.kuissdapp;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,116 +13,215 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+
 public class SoaalActivity extends AppCompatActivity {
 
-    TextView text_no;
-    TextView text_soal;
-    RadioGroup radiog;
-    RadioButton rb1, rb2, rb3, rb4;
-    int nomor = 0;
-    public static int hasil, benar, salah;
+    public static final String EXTRA_SCORE="extraScore";
+    private static final long COUNTDOWN_IN_MILLIS = 30000;
 
-    String[] no = new String[] {
-            "1/10",
-            "2/10",
-            "3/10",
-            "4/10",
-            "5/10",
-            "6/10",
-            "7/10",
-            "8/10",
-            "9/10",
-            "10/10"
-    };
+    private TextView text_score;
+    private TextView text_waktu;
+    private TextView text_no;
+    private TextView text_soal;
+    private RadioGroup radiog;
+    private RadioButton rb1, rb2, rb3, rb4;
+    private Button btn_lnjt;
 
-    String[] soal = new String[] {
-            "5+5=....",
-            "10-3=...",
-            "7+10=...",
-            "9-8=....",
-            "20-7=...",
-            "10+20=...",
-            "Pak Amir mempunyai apel ssebanyak 10 dan diminta adi 3 berapa sisa apel yang dimiliki Pak Amir...",
-            "Ara membeli labu 3 dan membeli lagi 8 berapa jumblah labu Ara sekarang...",
-            "Intan mempunyai baju baru sebanyak 10 buah lalu ibu memberi baju baru kepada intan sebanyak 2 buah berapa jumblah baju Intan sekarang...",
-            "Nita mempunyai sepatu 6 pasang lalu dia menjualnya sebanyak 4 pasang berapa jumbah sepatu Nita sekarang..."
-    };
 
-    String[] jawaban = new String[] {
-            "6","8","10","7",
-            "8","7","5","10",
-            "17","20","5","9",
-            "3","7","6","1",
-            "14","13","8","11",
-            "21","27","30","15",
-            "6 apel","5 apel","7 apel","3 apel",
-            "11 labu","13 labu","10 labu","14 labu",
-            "10 baju","13 baju","15 baju","12 baju",
-            "1 pasang","5 pasang","3 pasang","2 pasang",
-    };
+    private ColorStateList textColorDefaultRb;
+    private ColorStateList textColorDefaultcd;
 
-    String[] jawaban_benar = new String[] {
-            "10",
-            "7",
-            "17",
-            "1",
-            "13",
-            "30",
-            "7 apel",
-            "11 labu",
-            "12 baju",
-            "2 pasang",
-    };
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
+
+    private List<Soal> soalList;
+    private int soalCounter;
+    private int soalCountTotal;
+    private Soal currentSoal;
+
+    private int score;
+    private boolean jawabann;
+    private long backPressedTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soaal);
 
-        text_no = (TextView)findViewById(R.id.text_no);
-        text_soal = (TextView)findViewById(R.id.text_soal);
-        radiog = (RadioGroup)findViewById(R.id.radiog);
-        rb1 = (RadioButton)findViewById(R.id.rb1);
-        rb2 = (RadioButton)findViewById(R.id.rb2);
-        rb3 = (RadioButton)findViewById(R.id.rb3);
-        rb4 = (RadioButton)findViewById(R.id.rb4);
+        text_score = findViewById(R.id.score);
+        text_waktu = findViewById(R.id.waktu);
+        text_no = findViewById(R.id.text_no);
+        text_soal = findViewById(R.id.text_soal);
+        radiog = findViewById(R.id.radiog);
+        rb1 = findViewById(R.id.rb1);
+        rb2 = findViewById(R.id.rb2);
+        rb3 = findViewById(R.id.rb3);
+        rb4 = findViewById(R.id.rb4);
+        btn_lnjt = findViewById(R.id.btn_lnjt);
 
-        text_soal.setText(soal[nomor]);
-        rb1.setText(jawaban[0]);
-        rb2.setText(jawaban[1]);
-        rb3.setText(jawaban[2]);
-        rb4.setText(jawaban[3]);
+        textColorDefaultRb = rb1.getTextColors();
+        textColorDefaultcd = text_waktu.getTextColors();
 
-        radiog.check(0);
-        benar = 0;
-        salah = 0;
+        KuisDbHelper dbHelper = new KuisDbHelper(this);
+        soalList = dbHelper.getAllSoal();
+        soalCountTotal = soalList.size();
+        Collections.shuffle(soalList);
 
+        showNextSoal();
+
+        btn_lnjt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!jawabann){
+                    if(rb1.isChecked()||rb2.isChecked()||rb3.isChecked()||rb4.isChecked()){
+                        checkJawaban();
+                    }else{
+                        Toast.makeText(SoaalActivity.this,"",Toast.LENGTH_SHORT).show();
+                    }
+                }else {
+                    showNextSoal();
+                }
+            }
+        });
 
     }
 
-    public void next(View view) {
-        if(rb1.isChecked()||rb2.isChecked()||rb3.isChecked()||rb4.isChecked()) {
-            RadioButton jawaban_user = (RadioButton) findViewById(radiog.getCheckedRadioButtonId());
-            String ambil_jawaban_user = jawaban_user.getText().toString();
-            radiog.check(0);
-            if (ambil_jawaban_user.equalsIgnoreCase(jawaban_benar[nomor])) benar++;
-            else salah++;
-            nomor++;
-            if (nomor < soal.length) {
-                text_soal.setText(soal[nomor]);
-                rb1.setText(jawaban[(nomor * 4) + 0]);
-                rb2.setText(jawaban[(nomor * 4) + 1]);
-                rb3.setText(jawaban[(nomor * 4) + 2]);
-                rb4.setText(jawaban[(nomor * 4) + 3]);
+    private void showNextSoal() {
+        rb1.setTextColor(textColorDefaultRb);
+        rb2.setTextColor(textColorDefaultRb);
+        rb3.setTextColor(textColorDefaultRb);
+        rb4.setTextColor(textColorDefaultRb);
+        radiog.clearCheck();
 
-            } else {
-                hasil = benar * 10;
-                Intent selesai = new Intent(getApplicationContext(), SkorrActivity.class);
-                startActivity(selesai);
-            }
+        if(soalCounter < soalCountTotal){
+            currentSoal = soalList.get(soalCounter);
+
+            rb1.setText(currentSoal.getPilihan1());
+            rb2.setText(currentSoal.getPilihan2());
+            rb3.setText(currentSoal.getPilihan3());
+            rb4.setText(currentSoal.getPilihan4());
+
+            soalCounter++;
+            text_no.setText("Soal : " + soalCounter + "/" + soalCountTotal);
+            jawabann = false;
+            btn_lnjt.setText("ok");
+
+            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+            startCountDown();
+        }else {
+            finishQuiz();
         }
-        else {
-            Toast.makeText(this,"pilih jawaban dulu",Toast.LENGTH_SHORT).show();
+    }
+
+    private void startCountDown() {
+        countDownTimer = new CountDownTimer(timeLeftInMillis,1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                UpdateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis = 0;
+                UpdateCountDownText();
+                checkJawaban();
+            }
+        }.start();
+    }
+
+    private void UpdateCountDownText(){
+        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(),"%02d:%02d", minutes, seconds);
+
+        text_waktu.setText(timeFormatted);
+
+        if(timeLeftInMillis < 10000){
+            text_waktu.setTextColor(Color.RED);
+        }else {
+            text_waktu.setTextColor(textColorDefaultcd);
+        }
+    }
+
+    private void checkJawaban(){
+        jawabann = true;
+
+        countDownTimer.cancel();
+
+        RadioButton rbsSelected = findViewById(radiog.getCheckedRadioButtonId());
+
+        int jawabann = radiog.indexOfChild(rbsSelected);
+
+        if(jawabann == currentSoal.getJawaban()){
+            score++;
+            text_score.setText("score : " + score);
+        }
+        
+        showSolution();
+    }
+
+    private void showSolution() {
+        rb1.setTextColor(Color.RED);
+        rb2.setTextColor(Color.RED);
+        rb3.setTextColor(Color.RED);
+        rb4.setTextColor(Color.RED);
+
+        switch (currentSoal.getJawaban()){
+            case 1:
+                rb1.setTextColor(Color.GREEN);
+                text_soal.setText("Jawaban yang benar A");
+            break;
+            case 2:
+                rb1.setTextColor(Color.GREEN);
+                text_soal.setText("Jawaban yang benar B");
+            break;
+            case 3:
+                rb1.setTextColor(Color.GREEN);
+                text_soal.setText("Jawaban yang benar C");
+            break;
+            case 4:
+                rb1.setTextColor(Color.GREEN);
+                text_soal.setText("Jawaban yang benar D");
+            break;
+        }
+
+        if(soalCounter < soalCountTotal){
+            btn_lnjt.setText("Lanjut");
+        }else {
+            btn_lnjt.setText("Selesai");
+        }
+
+    }
+
+    private void finishQuiz() {
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(EXTRA_SCORE, score);
+        setResult(RESULT_OK, resultIntent);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            finishQuiz();
+        }else{
+            Toast.makeText(this,"tekan kembali untuk selesai",Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(countDownTimer != null){
+            countDownTimer.cancel();
         }
     }
 }
