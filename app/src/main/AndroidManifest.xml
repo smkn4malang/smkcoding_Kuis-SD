@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dycode.edu.kuissdapp">
+    package="com.tiarar.app.kuis_sd">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Kuis SD"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -17,18 +17,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".SubjectActivity" />
-        <activity android:name=".DialogActivity" />
-        <activity android:name=".KelasActivity" />
+        <activity android:name=".LeaderboardActivity" />
         <activity android:name=".VideoActivity" />
-        <activity android:name=".Edit" />
-        <activity android:name=".mat1" />
-        <activity
-            android:name=".SplashActivity"
-            android:label="@string/title_activity_splash"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".SoaalActivity" />
-        <activity android:name=".SkorActivity" />
-        <activity android:name=".SkorrActivity"></activity>
+        <activity android:name=".GameActivity" />
+        <activity android:name=".ClassActivity" />
+        <activity android:name=".ScoreActivity"></activity>
     </application>
 
 </manifest>

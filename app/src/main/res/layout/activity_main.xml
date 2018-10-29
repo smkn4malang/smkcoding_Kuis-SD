@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,16 +8,19 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
     <Button
-        android:id="@+id/btnn"
+        android:id="@+id/nama_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginRight="15dp"
+        android:layout_gravity="end"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:background="@drawable/round"
+        android:padding="5dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
         android:text="Nama"
+        android:textAlignment="center"
         android:textColor="#000"
         android:textSize="15sp" />
 
@@ -29,9 +31,9 @@
         android:layout_marginTop="40dp"
         android:fontFamily="monospace"
         android:text="SELAMAT DATANG"
-        android:textStyle="bold"
         android:textColor="#02d0ce"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="150dp"
@@ -47,11 +49,11 @@
         android:layout_marginTop="15dp"
         android:text="KUIS SD"
         android:textColor="#02d0ce"
-        android:textStyle="bold"
-        android:textSize="45sp" />
+        android:textSize="45sp"
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btnm"
+        android:id="@+id/mulai_btn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -62,7 +64,7 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/btnl"
+        android:id="@+id/skor_btn"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -71,6 +73,5 @@
         android:text="LIHAT SKOR"
         android:textColor="#000"
         android:textSize="30sp" />
-
 
 </LinearLayout>

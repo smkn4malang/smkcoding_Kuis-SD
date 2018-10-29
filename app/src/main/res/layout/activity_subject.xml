@@ -24,12 +24,10 @@
             android:textColor="#FFF"
             android:textSize="40sp" />
 
-
     </LinearLayout>
 
-
     <Button
-        android:id="@+id/btnM"
+        android:id="@+id/matematika_btn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -40,6 +38,7 @@
         android:textSize="30sp" />
 
     <Button
+        android:id="@+id/ipa_btn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -47,10 +46,10 @@
         android:background="@drawable/round"
         android:text="IPA"
         android:textColor="#000"
-        android:textSize="30sp"
-        android:id="@+id/btnI"/>
+        android:textSize="30sp" />
 
     <Button
+        android:id="@+id/bi_btn"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -58,7 +57,6 @@
         android:background="@drawable/round"
         android:text="B. INDONESIA"
         android:textColor="#000"
-        android:textSize="30sp"
-        android:id="@+id/btnB"/>
+        android:textSize="30sp" />
 
 </LinearLayout>
